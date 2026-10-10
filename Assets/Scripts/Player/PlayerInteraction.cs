@@ -31,7 +31,7 @@ public class PlayerInteraction : MonoBehaviour
             // así funciona aunque el collider esté en un hijo y el script en el contenedor padre.
             Sculpture sculpture = hit.collider.GetComponentInParent<Sculpture>();
 
-            
+            // DIAGNÓSTICO TEMPORAL: borrá este bloque cuando el highlight ande.
             if (hit.collider.name != lastHitName)
             {
                 lastHitName = hit.collider.name;
@@ -50,6 +50,10 @@ public class PlayerInteraction : MonoBehaviour
                     currentSculpture = sculpture;
                     currentSculpture.SetHighlight(true);
                     HideTooltip(); // por si quedó abierto de la pieza anterior
+
+                    // Crosshair: avisa que hay algo interactuable. No hace falta
+                    // asignar nada a mano, CrosshairController es un singleton.
+                    if (CrosshairController.Instance != null) CrosshairController.Instance.SetActive(true);
                 }
 
                 // Tooltip: se muestra SOLO mientras mantenés F apretado mirando la pieza
@@ -78,6 +82,8 @@ public class PlayerInteraction : MonoBehaviour
             currentSculpture.SetHighlight(false);
             currentSculpture = null;
             HideTooltip();
+
+            if (CrosshairController.Instance != null) CrosshairController.Instance.SetActive(false);
         }
     }
 

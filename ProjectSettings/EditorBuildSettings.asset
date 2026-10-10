@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ea84e9328b420da429ea0d1d5858b5aa
+  - enabled: 1
     path: Assets/Scenes/MuseumRooms.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

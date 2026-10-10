@@ -1780,7 +1780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Volver
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1942,7 +1942,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1284461054}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1139902615}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: OnShowCuratorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1284461054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2175,7 +2187,39 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Basado en Gombrich
+  m_text: "MARCO TE\xD3RICO\r\n\r\nEste museo interactivo no pretende contar la historia
+    completa del arte. Elige un solo hilo \u2014c\xF3mo se represent\xF3 el cuerpo
+    humano\u2014 y lo sigue a trav\xE9s de dos momentos clave, tomando como referencia
+    la Historia del arte de E. H. Gombrich.\r\n\r\n\xBFPOR QU\xC9 EL CUERPO?\r\n\r\nEl
+    cuerpo humano es, para Gombrich, el mejor term\xF3metro de un cambio art\xEDstico:
+    a diferencia de un paisaje o un objeto, todos sabemos intuitivamente c\xF3mo
+    se ve y c\xF3mo se mueve un cuerpo real. Por eso cualquier distancia entre lo
+    que vemos en una estatua y lo que sabemos de nuestro propio cuerpo salta a la
+    vista, y revela una decisi\xF3n \u2014consciente o no\u2014 de quien la hizo.\r\n\r\nEGIPTO:
+    LA F\xD3RMULA\r\n\r\nEn el arte egipcio, el cuerpo no se dibuja como se ve, sino
+    como se sabe. Cada parte sigue una convenci\xF3n fija: la cabeza de perfil, el
+    torso de frente, las piernas de perfil (lo que se conoce como ley de la frontalidad).
+    El resultado no es un error de observaci\xF3n ni una limitaci\xF3n t\xE9cnica:
+    es un sistema. Cada \xE1ngulo muestra la parte del cuerpo de la forma m\xE1s
+    clara y completa posible, sin importar si esa combinaci\xF3n podr\xEDa existir
+    en un cuerpo real.\r\n\r\nGRECIA: LA RUPTURA\r\n\r\nEn Grecia, por primera vez
+    en este recorrido, el cuerpo empieza a copiarse a s\xED mismo. El Kouros arcaico
+    todav\xEDa es r\xEDgido y frontal \u2014hereda la f\xF3rmula egipcia\u2014, pero
+    ya en el Dor\xEDforo de Policleto el peso cae sobre una sola pierna, la cadera
+    se quiebra, los hombros compensan en diagonal: es el contrapposto. Y en piezas
+    como el Disc\xF3bolo, el cuerpo llega a representarse en pleno movimiento, congelando
+    un instante de tensi\xF3n real. El canon sigue existiendo \u2014Policleto trabaj\xF3
+    con proporciones matem\xE1ticas precisas\u2014 pero ahora describe un cuerpo
+    que podr\xEDa, en teor\xEDa, pararse as\xED.\r\n\r\nUNA ADVERTENCIA\r\n\r\nEsta
+    no es una historia de progreso. No es que Grecia \"mejor\xF3\" a Egipto: son
+    dos sistemas distintos, cada uno coherente con lo que buscaba lograr. De hecho,
+    este mismo salto hacia el naturalismo se pierde durante gran parte del Medioevo,
+    antes de volver a aparecer \u2014citando expl\xEDcitamente a Grecia\u2014 en
+    el Renacimiento. Este museo no llega tan lejos todav\xEDa: se detiene en el momento
+    exacto en que el cuerpo aprendi\xF3 a imitarse a s\xED mismo.\r\n\r\nC\xD3MO
+    RECORRER LA MUESTRA\r\n\r\nNo hace falta leer cada cartel con atenci\xF3n erudita.
+    Alcanza con una sola pregunta al pararse frente a cada pieza: \xBFc\xF3mo se
+    para esta figura, y por qu\xE9?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
