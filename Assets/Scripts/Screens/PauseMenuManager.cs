@@ -29,8 +29,6 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Escena del menú principal (para 'Volver al menú', opcional)")]
     public string mainMenuSceneName = "MainMenu";
 
-    private bool isPaused = false;
-
     void Start()
     {
         if (pausePanel != null) pausePanel.SetActive(false);
@@ -38,16 +36,21 @@ public class PauseMenuManager : MonoBehaviour
 
     void Update()
     {
+        // Mientras la intro está activa (GameState.Intro), ESC no hace nada acá:
+        // antes este Update() no sabía nada del estado de la intro y podía abrir
+        // pausa encima de ella. Ahora ambos scripts comparten el mismo estado.
+        if (GameStateManager.Instance.CurrentState == GameState.Intro) return;
+
         if (Input.GetKeyDown(pauseKey))
         {
-            if (isPaused) Resume();
+            if (GameStateManager.Instance.CurrentState == GameState.Paused) Resume();
             else Pause();
         }
     }
 
     public void Pause()
     {
-        isPaused = true;
+        GameStateManager.Instance.SetState(GameState.Paused);
 
         if (pausePanel != null) pausePanel.SetActive(true);
 
@@ -64,7 +67,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Resume()
     {
-        isPaused = false;
+        GameStateManager.Instance.SetState(GameState.Playing);
 
         if (pausePanel != null) pausePanel.SetActive(false);
 

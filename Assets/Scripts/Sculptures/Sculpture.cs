@@ -81,15 +81,36 @@ public abstract class Sculpture : MonoBehaviour
     {
         if (renderersToHighlight == null || renderersToHighlight.Length == 0) return;
 
-        Shader unlitShader = Shader.Find("Unlit/Color");
-        if (unlitShader == null)
+        // Buscar el shader por nombre (Shader.Find) depende de que esté incluido en
+        // el build y de que le pongamos el nombre exacto de esta versión de URP, que
+        // varía. Más seguro: un Material guardado en una carpeta Resources/, que
+        // Unity SIEMPRE incluye en el build sin importar el shader stripping.
+        // Creá en el proyecto: Resources/HighlightOutlineMaterial.mat, con el shader
+        // Universal Render Pipeline/Unlit asignado desde el dropdown del Inspector.
+        Material template = Resources.Load<Material>("HighlightOutlineMaterial");
+
+        if (template == null)
         {
-            Debug.LogWarning($"{sculptureName}: no se encontró el shader Unlit/Color, el contorno de highlight no va a funcionar.");
-            return;
+            // Fallback por si todavía no creaste el material: probamos los nombres
+            // de shader más comunes en URP/Built-in.
+            Shader unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
+            if (unlitShader == null) unlitShader = Shader.Find("Lightweight Render Pipeline/Unlit");
+            if (unlitShader == null) unlitShader = Shader.Find("Unlit/Color");
+
+            if (unlitShader == null)
+            {
+                Debug.LogWarning($"{sculptureName}: no se encontró ningún shader Unlit disponible, el contorno de highlight no va a funcionar.");
+                return;
+            }
+            outlineMaterial = new Material(unlitShader);
+        }
+        else
+        {
+            outlineMaterial = new Material(template);
         }
 
-        outlineMaterial = new Material(unlitShader);
-        outlineMaterial.color = highlightColor;
+        if (outlineMaterial.HasProperty("_BaseColor")) outlineMaterial.SetColor("_BaseColor", highlightColor);
+        else outlineMaterial.color = highlightColor;
 
         outlineObjects = new GameObject[renderersToHighlight.Length];
 
