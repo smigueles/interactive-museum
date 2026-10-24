@@ -2,10 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Menú de pausa. Poné este script en un GameObject vacío de la escena del museo.
-/// ESC abre/cierra el panel. Mientras está abierto, pausa el tiempo del juego
-/// (Time.timeScale = 0) y bloquea el movimiento/interacción, igual que hace
-/// IntroScreenManager al principio.
+/// 
 ///
 /// Conectá los botones del panel a estos métodos públicos desde el Inspector
 /// (OnClick() del botón → arrastrás este GameObject → elegís el método):
@@ -19,11 +16,11 @@ public class PauseMenuManager : MonoBehaviour
     public GameObject pausePanel;
 
     [Header("Tecla para pausar/reanudar")]
-    public KeyCode pauseKey = KeyCode.Escape;
+    public KeyCode pauseKey = KeyCode.Q;
 
     [Header("Referencias a bloquear mientras está en pausa")]
-    public MonoBehaviour playerMovementScript; // tu script de movimiento FPS (PlayerMovement)
-    public MonoBehaviour mouseLookScript;      // la rotación de cámara (MouseLook), es un script APARTE
+    public MonoBehaviour playerMovementScript; 
+    public MonoBehaviour mouseLookScript;      
     public PlayerInteraction playerInteraction;
 
     [Header("Escena del menú principal (para 'Volver al menú', opcional)")]
@@ -36,9 +33,6 @@ public class PauseMenuManager : MonoBehaviour
 
     void Update()
     {
-        // Mientras la intro está activa (GameState.Intro), ESC no hace nada acá:
-        // antes este Update() no sabía nada del estado de la intro y podía abrir
-        // pausa encima de ella. Ahora ambos scripts comparten el mismo estado.
         if (GameStateManager.Instance.CurrentState == GameState.Intro) return;
 
         if (Input.GetKeyDown(pauseKey))

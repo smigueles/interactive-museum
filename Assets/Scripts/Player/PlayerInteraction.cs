@@ -10,10 +10,9 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("UI de tooltip (referenciá tu Text/TextMeshPro acá)")]
     public GameObject tooltipPanel;   // el panel/fondo del tooltip, se activa/desactiva
-    public TMPro.TextMeshProUGUI tooltipText; // si usás TextMeshPro. Si usás UI.Text legacy, cambiá el tipo.
-
+    public TMPro.TextMeshProUGUI tooltipText; 
     private Sculpture currentSculpture; // guarda a qué escultura estamos mirando ahora
-    private string lastHitName = ""; // solo para el log de diagnóstico
+    [SerializeField] private JournalToast journalToast;
 
     void Update()
     {
@@ -31,12 +30,6 @@ public class PlayerInteraction : MonoBehaviour
             // así funciona aunque el collider esté en un hijo y el script en el contenedor padre.
             Sculpture sculpture = hit.collider.GetComponentInParent<Sculpture>();
 
-            // DIAGNÓSTICO TEMPORAL: borrá este bloque cuando el highlight ande.
-            if (hit.collider.name != lastHitName)
-            {
-                lastHitName = hit.collider.name;
-                Debug.Log($"Raycast pegó en '{hit.collider.name}' | Sculpture encontrada: {(sculpture != null ? sculpture.SculptureName : "NINGUNA")}");
-            }
 
             if (sculpture != null)
             {
@@ -70,13 +63,14 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && JournalManager.Instance != null)
                 {
                     JournalManager.Instance.AddEntry(sculpture.SculptureName, sculpture.GetTooltip());
+                    journalToast.Show();
                 }
 
-                return; // ya resolvimos este frame, no seguimos
+                return; 
             }
         }
 
-        // Si llegamos acá: el raycast no pegó en nada, o pegó en algo sin componente Sculpture
+       
         if (currentSculpture != null)
         {
             currentSculpture.SetHighlight(false);

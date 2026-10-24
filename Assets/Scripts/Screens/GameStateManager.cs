@@ -1,12 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Estado global del juego, en reemplazo de los booleanos sueltos
-/// (isPaused, etc.) repartidos entre IntroScreenManager y PauseMenuManager.
-///
-/// No necesita configuración en el Inspector: se auto-crea la primera vez
-/// que alguien pide GameStateManager.Instance, así que no hace falta
-/// arrastrarlo a ningún GameObject ni armar nada a mano.
+/// Estado global del juego,
 /// </summary>
 public enum GameState { Intro, Playing, Paused }
 
